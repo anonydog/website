@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "bunny", "~> 2.6"
+gem "aws-sdk-sns", "~> 1.38"
 gem "msgpack", "~> 1.1"
 
 group :test do

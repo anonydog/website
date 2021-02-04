@@ -1,9 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    amq-protocol (2.3.2)
-    bunny (2.17.0)
-      amq-protocol (~> 2.3, >= 2.3.1)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.423.0)
+    aws-sdk-core (3.112.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-sns (1.38.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.2.2)
+      aws-eventstream (~> 1, >= 1.0.2)
+    jmespath (1.4.0)
     minitest (5.14.3)
     msgpack (1.4.2)
 
@@ -11,7 +21,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bunny (~> 2.6)
+  aws-sdk-sns (~> 1.38)
   minitest (~> 5.10)
   msgpack (~> 1.1)
 
