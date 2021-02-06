@@ -1,14 +1,23 @@
 require "aws-sdk-sns"
+require "aws-sdk-sts"
 require "msgpack"
 
 require "base64"
 
+aws_credentials = Aws::AssumeRoleCredentials.new(
+  role_session_name: 'anonydog-website',
+  role_arn: ENV['SNS_TOPIC_ROLE_ARN'],
+  client: Aws::STS::Client.new(
+    region: 'us-west-2',
+    credentials: Aws::Credentials.new(
+      ENV['SNS_TOPIC_ACCESS_KEY'],
+      ENV['SNS_TOPIC_SECRET_KEY'],
+    ),
+  ),
+)
 aws_client = Aws::SNS::Client.new(
   region: 'us-west-2',
-  credentials: Aws::Credentials.new(
-    ENV['SNS_TOPIC_ACCESS_KEY'],
-    ENV['SNS_TOPIC_SECRET_KEY']
-  ),
+  credentials: aws_credentials,
 )
 topic = Aws::SNS::Topic.new(
   ENV['SNS_TOPIC_ARN'],
